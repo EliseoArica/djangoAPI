@@ -1,0 +1,42 @@
+<html lang="es">
+<head>
+    <script src="https://checkout.culqi.com/js/v3"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    Producto random xD
+    <input type="button" id="buyButton" value="COMPRAR">
+
+<script>
+    Culqi.publicKey = 'pk_test_b8a5e9e9bc9b4fc6';
+
+    Culqi.settings({
+    title: 'Culqi Store',
+    currency: 'PEN',
+    description: 'Producto random',
+    amount: 1000
+    });
+
+    $('#buyButton').on('click', function(e) {
+        // Abre el formulario con la configuración en Culqi.settings
+        Culqi.open();
+        e.preventDefault();
+    });
+
+    function culqi() {
+        if (Culqi.token) { // ¡Objeto Token creado exitosamente!
+            var token = Culqi.token.id;
+            alert('Se ha creado un token:' + token);
+            //En esta linea de codigo debemos enviar el "Culqi.token.id"
+            //hacia tu servidor con Ajax
+        }else { // ¡Hubo algún problema!
+            // Mostramos JSON de objeto error en consola
+            console.log(Culqi.error);
+            alert(Culqi.error.user_message);
+        }
+    };
+</script>
+</body>
+</html>
